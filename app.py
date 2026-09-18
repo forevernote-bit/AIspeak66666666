@@ -5,15 +5,15 @@ import subprocess
 import os
 import tempfile
 import json
+import shutil
 
 app = Flask(__name__)
 
 client = genai.Client()
 MODEL = "gemini-3.5-flash-lite"
 
-FFMPEG_PATH = r"C:\Users\User\AppData\Local\Microsoft\WinGet\Packages\Gyan.FFmpeg.Shared_Microsoft.Winget.Source_8wekyb3d8bbwe\ffmpeg-9.0.1-full_build-shared\bin\ffmpeg.exe"
 
-
+FFMPEG_PATH = shutil.which("ffmpeg") or "ffmpeg"
 @app.route("/")
 def home():
     return render_template("index.html")
