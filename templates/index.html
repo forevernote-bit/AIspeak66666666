@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IELTS Speaking Assistant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="bg-blob blob1"></div>
+<div class="bg-blob blob2"></div>
+
+<div class="container">
+
+    <div class="app-header">
+        <div class="logo">🎓</div>
+        <h1>IELTS Speaking Assistant</h1>
+        <p class="subtitle">AI yordamida IELTS Speaking mashqini sinab ko'ring</p>
+    </div>
+
+    <div class="card">
+
+        <div class="part-tabs" id="partTabs">
+            <button class="part-tab active" data-part="part1">Part 1</button>
+            <button class="part-tab" data-part="part2">Part 2</button>
+            <button class="part-tab" data-part="part3">Part 3</button>
+        </div>
+
+        <div class="topic-picker">
+            <label for="topicSearch" class="topic-picker-label">📂 Mavzuni tanlang</label>
+            <div class="topic-combobox" id="topicCombobox">
+                <div class="topic-search-wrap">
+                    <span class="topic-search-icon">🔍</span>
+                    <input
+                        type="text"
+                        id="topicSearch"
+                        class="topic-search"
+                        placeholder="Mavzu qidirish..."
+                        autocomplete="off"
+                    >
+                    <button type="button" id="topicClearBtn" class="topic-clear-btn" title="Tozalash">✕</button>
+                </div>
+                <ul id="topicDropdown" class="topic-dropdown"></ul>
+            </div>
+        </div>
+
+        <div class="topic-card">
+            <div class="topic-top">
+                <span class="topic-label" id="partLabel">🗣️ Short questions</span>
+                <button id="shuffleBtn" class="shuffle-btn" title="Tasodifiy mavzu">🔀</button>
+            </div>
+            <div id="topicText" class="topic-body"></div>
+        </div>
+
+        <h3 class="section-title">⏱️ Speaking time</h3>
+
+        <div class="time-buttons">
+            <button class="time-btn" data-time="30">30 sec</button>
+            <button class="time-btn active" data-time="60">1 min</button>
+            <button class="time-btn" data-time="90">1:30</button>
+            <button class="time-btn" data-time="120">2 min</button>
+        </div>
+
+        <div class="timer-wrap">
+            <svg class="timer-ring" viewBox="0 0 140 140">
+                <circle class="ring-bg" cx="70" cy="70" r="62"></circle>
+                <circle class="ring-progress" id="ringProgress" cx="70" cy="70" r="62"></circle>
+            </svg>
+            <div class="timer-center">
+                <div id="timer">1:00</div>
+                <span class="timer-sub">qolgan vaqt</span>
+            </div>
+        </div>
+
+        <button id="startBtn" class="start-btn">
+            <span class="btn-icon">🎤</span> Start Speaking
+        </button>
+
+        <button id="stopBtn" class="stop-btn" disabled>
+            <span class="btn-icon">⏹</span> Stop
+        </button>
+
+        <div id="recordingIndicator" class="recording-indicator hidden">
+            <span class="rec-dot"></span>
+            <span class="rec-label">Recording...</span>
+            <div class="wave">
+                <span></span><span></span><span></span><span></span><span></span>
+            </div>
+        </div>
+
+        <p id="status">Ready</p>
+
+        <div id="result" class="result-box"></div>
+
+    </div>
+
+    <p class="footer-note">57 ta Part 1 mavzu · 86 ta Part 2/3 mavzu juftligi — barchasi topic bo'yicha tanlanadi</p>
+</div>
+
+<script src="{{ url_for('static', filename='topics_data.js') }}"></script>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
